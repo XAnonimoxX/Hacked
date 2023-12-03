@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário de Acesso</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    form {
+      background-color: #000;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      width: 400px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      color: #ff0000;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #fff;
+      color: #000;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #error-message {
+      color: #ff0000;
+      margin-top: 10px;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+    }
+
+    #success-message {
+      color: #00f; /* Azul */
+      text-align: center;
+      font-size: 24px; /* Tamanho grande */
+      margin-top: 20px;
+      opacity: 0;
+      animation: fadeIn 1s forwards, fadeOut 3s forwards 2s; /* fadeIn + fadeOut com delay de 2 segundos */
+    }
+
+    #additional-info {
+      background-color: #fff;
+      color: #000;
+      padding: 20px;
+      border-radius: 10px;
+      width: 400px;
+      text-align: center;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <form id="loginForm">
+    <h1>Criador do site em desenvolvimento: Anônimo Hacker</h1>
+    <label for="username">Usuário:</label>
+    <input type="text" id="username" placeholder="Insira seu usuário">
+    <label for="password">Senha:</label>
+    <input type="password" id="password" placeholder="Insira sua senha">
+    <button onclick="prosseguir()">Prosseguir</button>
+    <div id="error-message"></div>
+  </form>
+
+  <div id="success-message"></div>
+
+  <div id="additional-info">
+    <p>Esse site foi criado para testes, está em desenvolvimento.</p>
+    <p>Acesse meu canal para ter mais notícias sobre o site: <a href="https://youtube.com/channel/UCnd95gsN0-1YLzXwh_k_kqg?si=hRpk_rrb1jseiN_o" target="_blank" style="color: #000;">Canal no YouTube</a></p>
+  </div>
+
+  <script>
+    function prosseguir() {
+      const username = document.getElementById('username').value.trim().toLowerCase();
+      const password = document.getElementById('password').value.trim().toLowerCase();
+
+      // Verificar se as credenciais são válidas
+      if (username === 'anônimo' && password === 'hacker') {
+        // Adicione aqui a lógica de autenticação bem-sucedida
+        const successMessage = document.getElementById('success-message');
+        successMessage.innerHTML = 'Login efetuado com sucesso!';
+        successMessage.style.opacity = '1';
+
+        // Esconder a mensagem após 3 segundos
+        setTimeout(() => {
+          successMessage.style.opacity = '0';
+        }, 5000); // 3 segundos para desaparecer (2 segundos de delay + 3 segundos de animação)
+      } else {
+        // Exibir mensagem de erro para credenciais inválidas
+        const errorMessage = document.getElementById('error-message');
+        errorMessage.innerHTML = 'Não foi possível acessar, tente novamente';
+        errorMessage.style.opacity = '1';
+
+        // Esconder a mensagem de erro após 3 segundos
+        setTimeout(() => {
+          errorMessage.style.opacity = '0';
+        }, 3000);
+      }
+    }
+  </script>
+</body>
+</html>
